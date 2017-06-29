@@ -20,10 +20,10 @@ public class RegisteredGames {
 
     public void setOrder(int ord) {
         order = ord;
+        Collections.sort(games);
     }
 
     public List<Game> getList() {
-        Collections.sort(games);
         return games;
     }
 
@@ -47,6 +47,57 @@ public class RegisteredGames {
         }
 
         return result;
-
     }
+
+
+        public boolean set(int position, Game g) {
+            Collections.sort(games);
+            ArrayList<Game> res = new ArrayList<>();
+            int count = 0;
+            for (Game i : games) {
+                if (count == position) {
+                    res.add(g);
+                } else {
+                    res.add(i);
+                }
+                count++;
+            }
+            games = res;
+            if (games.size()>=position && position>=0) return true;
+            return false;
+        }
+
+    
+        public boolean remove(int position) {
+            int count = 0;
+            for (Game i : games) {
+                if (count == position) {
+                    games.remove(i);
+                    return true;
+                }
+                count++;
+            }
+            return false;
+
+        }
+
+       
+        public boolean insert(int position, Game g) {
+            Collections.sort(games);
+            ArrayList<Game> res = new ArrayList<>();
+            int count = 0;
+            for (Game i : games) {
+                if (count == position) {
+                    res.add(g);
+                    res.add(i);
+                } else {
+                    res.add(i);
+                }
+                count++;
+            }
+
+            games = res;
+            if (games.size()>=position && position>=0) return true;
+            return false;
+        }
 }
